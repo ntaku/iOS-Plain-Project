@@ -1,0 +1,26 @@
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+
+#define LOGGER
+
+
+// Logger
+#ifdef LOGGER
+# define LOG(...)            NSLog(@"%@", [NSString stringWithFormat:@"%s %@", __PRETTY_FUNCTION__, [NSString stringWithFormat:__VA_ARGS__]])
+# define LOG_METHOD          NSLog(@"%s", __PRETTY_FUNCTION__)
+#else
+# define LOG(...)
+# define LOG_METHOD
+#endif
+
+
+// Shortcut macro
+#define UIAppDelegate                   (AppDelegate *)[[UIApplication sharedApplication] delegate]
+#define LS(name)                        NSLocalizedString(name, name)
+#define IPAD                            (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IPAD_RETINA                     (IPAD && [[UIScreen mainScreen] scale] == 2.0)
+#define IOS_VERSION_GREATER_THAN(v)     ([[[UIDevice currentDevice] systemVersion] doubleValue] >= v)
+#define APP_VERSION                     [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey]
+
